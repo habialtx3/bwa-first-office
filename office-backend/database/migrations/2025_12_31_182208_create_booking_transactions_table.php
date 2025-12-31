@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('booking_transactions', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('phone_number');
+            $table->string('booking_trx');
+            $table->foreignId('office_space_id')->constrained()->cascadeOnDelete();
+            $table->unsignedInteger('total_amount');
+            $table->unsignedInteger('duration');
+            $table->date('started_at');
+            $table->date('ended_at');
             $table->timestamps();
         });
     }
