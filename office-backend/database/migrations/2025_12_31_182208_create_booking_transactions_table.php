@@ -15,12 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('phone_number');
-            $table->string('booking_trx');
-            $table->foreignId('office_space_id')->constrained()->cascadeOnDelete();
+            $table->string('booking_trx_id');
+            $table->boolean('is_paid');
+            $table->date('started_at');
             $table->unsignedInteger('total_amount');
             $table->unsignedInteger('duration');
-            $table->date('started_at');
             $table->date('ended_at');
+            $table->foreignId('office_space_id')->constrained()->cascadeOnDelete();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
