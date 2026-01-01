@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 
 class OfficeSpace extends Model
 {
@@ -24,6 +26,11 @@ class OfficeSpace extends Model
         'city_id',
     ];
 
+    public function setNameAttribute($value){
+        $this->attributes['name'] = $value;
+        $this->attributes['slug'] = Str::slug($value);
+    }
+
     public function benefits(): HasMany {
         return $this->hasMany(OfficeSpaceBenefit::class);
     }
@@ -31,10 +38,15 @@ class OfficeSpace extends Model
     public function photos(): HasMany {
         return $this->hasMany(OfficeSpacePhoto::class);
     }
-    
+
     public function city(): BelongsTo
     {
         return $this->belongsTo(City::class);
+    }
+
+    public function bookingTransaction(): HasOne
+    {
+        return $this->hasOne(bookingTransaction::class);
     }
 
 
