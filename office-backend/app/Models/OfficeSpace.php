@@ -17,6 +17,7 @@ class OfficeSpace extends Model
     protected $fillable = [
         'name',
         'thumbnail',
+        'address',
         'is_open',
         'is_full_booked',
         'price',

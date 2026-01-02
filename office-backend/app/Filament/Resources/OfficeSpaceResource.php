@@ -5,10 +5,19 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\OfficeSpaceResource\Pages;
 use App\Filament\Resources\OfficeSpaceResource\RelationManagers;
 use App\Models\OfficeSpace;
+use Filament\Actions\DeleteAction;
 use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -24,6 +33,68 @@ class OfficeSpaceResource extends Resource
         return $form
             ->schema([
                 //
+                TextInput::make('name')
+                    ->required(),
+
+                TextInput::make('address')
+                    ->required(),
+
+                FileUpload::make('thumbnail')
+                    ->required()
+                    ->image(),
+
+                Textarea::make('about')
+                    ->rows(10)
+                    ->cols(20)
+                    ->required(),
+
+                Repeater::make('photos')
+                    ->relationship('photos')
+                    ->schema([
+                        FileUpload::make('photo')
+                            ->required()
+                    ]),
+
+
+                Repeater::make('benefits')
+                    ->relationship('benefits')
+                    ->schema([
+                        TextInput::make('name')
+                            ->required()
+                    ]),
+
+                Select::make('city_id')
+                    ->relationship('city', 'name')
+                    ->searchable()
+                    ->required()
+                    ->preload(),
+
+
+                TextInput::make('price')
+                    ->required()
+                    ->numeric()
+                    ->prefix('IDR'),
+
+
+                TextInput::make('duration')
+                    ->required()
+                    ->numeric()
+                    ->prefix('Days'),
+
+                Select::make('is_open')
+                    ->required()
+                    ->options([
+                        true => 'Open',
+                        false => 'Not Open',
+                    ]),
+
+
+                Select::make('is_full_booked')
+                    ->required()
+                    ->options([
+                        true => 'Not Available',
+                        false => 'Available',
+                    ]),
             ]);
     }
 
@@ -32,12 +103,31 @@ class OfficeSpaceResource extends Resource
         return $table
             ->columns([
                 //
+                TextColumn::make('name')
+                    ->searchable(),
+
+                ImageColumn::make('thumbnail'),
+
+                TextColumn::make('city.name')
+                    ->searchable(),
+
+                IconColumn::make('is_full_booked')
+                ->boolean()
+
+                ->trueColor('danger')
+                ->falseColor('success')
+
+                ->trueIcon('heroicon-o-x-circle')
+                ->falseIcon('heroicon-o-check-circle')
+                ->label('Available')
+
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
