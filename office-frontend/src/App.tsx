@@ -6,6 +6,9 @@ import BookOffice from './pages/BookOffice'
 import SuccessBooking from './pages/SuccessBooking'
 import CheckBooking from './pages/CheckBooking'
 
+import './App.css'
+
+
 function App() {
   return (
     <BrowserRouter>
