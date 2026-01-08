@@ -1,3 +1,5 @@
+import { Swiper, SwiperSlide } from "swiper/react"
+
 export default function Browse() {
   return (
     <>
@@ -37,71 +39,71 @@ export default function Browse() {
         </div>
       </nav>
       <header className="flex flex-col w-full">
-        <section id="Hero-Banner" className="h-[720px] -mb-[93px] bg-[#F7F7FD]">
-          <div className="relative mx-auto max-w-[1130px] flex flex-wrap  items-center gap-10">
-            <div id="Hero-Text" className="relative flex flex-col w-full max-w-[650px] h-fit rounded-[30px] border border-[#E0DEF7] p-10 gap-[30px] bg-white mt-[70px] ml-[calc((100%-1130px)/2)] z-10">
-              <div className="flex items-center w-fit rounded-full py-2 px-4 gap-[10px] bg-[#000929]">
+        <section id="Hero-Banner" className="relative flex h-[720px] -mb-[93px]">
+          <div
+            id="Hero-Text"
+            className="relative flex flex-col w-full max-w-[650px] h-fit rounded-[30px] border border-[#E0DEF7] p-10 gap-[30px] bg-white mt-[70px] ml-[calc((100%-1130px)/2)] z-10"
+          >
+            <div className="flex items-center w-fit rounded-full py-2 px-4 gap-[10px] bg-[#000929]">
+              <img
+                src="assets/images/icons/crown-white.svg"
+                className="w-5 h-5"
+                alt="icon"
+              />
+              <span className="font-semibold text-white">
+                We’ve won top productivity 500 fortunes
+              </span>
+            </div>
+            <h1 className="font-extrabold text-[50px] leading-[60px]">
+              All Great Offices.
+              <br />
+              Grow Your Business.
+            </h1>
+            <p className="text-lg leading-8 text-[#000929]">
+              Kantor yang tepat dapat memberikan impact pekerjaan menjadi lebih baik
+              dan sehat dalam tumbuhkan karir.
+            </p>
+            <div className="flex items-center gap-5">
+              <a
+                href="#"
+                className="flex items-center rounded-full p-[20px_26px] gap-3 bg-[#0D903A]"
+              >
                 <img
-                  src="assets/images/icons/crown-white.svg"
-                  className="w-5 h-5"
+                  src="assets/images/icons/slider-horizontal-white.svg"
+                  className="w-[30px] h-[30px]"
                   alt="icon"
                 />
-                <span className="font-semibold text-white">
-                  We’ve won top productivity 500 fortunes
+                <span className="font-bold text-xl leading-[30px] text-[#F7F7FD]">
+                  Explore Now
                 </span>
-              </div>
-              <h1 className="font-extrabold text-[50px] leading-[60px]">
-                All Great Offices.
-                <br />
-                Grow Your Business.
-              </h1>
-              <p className="text-lg leading-8 text-[#000929]">
-                Kantor yang tepat dapat memberikan impact pekerjaan menjadi lebih baik
-                dan sehat dalam tumbuhkan karir.
-              </p>
-              <div className="flex items-center gap-5">
-                <a
-                  href="#"
-                  className="flex items-center rounded-full p-[20px_26px] gap-3 bg-[#0D903A]"
-                >
-                  <img
-                    src="assets/images/icons/slider-horizontal-white.svg"
-                    className="w-[30px] h-[30px]"
-                    alt="icon"
-                  />
-                  <span className="font-bold text-xl leading-[30px] text-[#F7F7FD]">
-                    Explore Now
-                  </span>
-                </a>
-                <a
-                  href="#"
-                  className="flex items-center rounded-full border border-[#000929] p-[20px_26px] gap-3 bg-white"
-                >
-                  <img
-                    src="assets/images/icons/video-octagon.svg"
-                    className="w-[30px] h-[30px]"
-                    alt="icon"
-                  />
-                  <span className="font-semibold text-xl leading-[30px]">
-                    Watch Story
-                  </span>
-                </a>
-              </div>
-            </div>
-            {/* RIGHT - IMAGE */}
-            <div
-              id="Hero-Image"
-              className="flex-1 h-full  rounded-bl-[40px] overflow-hidden"
-            >
-              <img
-                src="assets/images/backgrounds/banner.png"
-                className="w-full h-full object-cover"
-                alt="hero background"
-              />
+              </a>
+              <a
+                href="#"
+                className="flex items-center rounded-full border border-[#000929] p-[20px_26px] gap-3 bg-white"
+              >
+                <img
+                  src="assets/images/icons/video-octagon.svg"
+                  className="w-[30px] h-[30px]"
+                  alt="icon"
+                />
+                <span className="font-semibold text-xl leading-[30px]">
+                  Watch Story
+                </span>
+              </a>
             </div>
           </div>
+          <div
+            id="Hero-Image"
+            className="absolute right-0 w-[calc(100%-((100%-1130px)/2)-305px)] h-[720px] rounded-bl-[40px] overflow-hidden"
+          >
+            <img
+              src="assets/images/backgrounds/banner.png"
+              className="w-full h-full object-cover"
+              alt="hero background"
+            />
+          </div>
         </section>
-        <div className="flex flex-col pt-[150px] pb-10 px-[120px] gap-10 bg-[#0D903A]">
+        <div id="companies" className="flex flex-col z-10 pt-[150px] pb-10 px-[120px] gap-10 bg-[#0D903A]">
           <div className="logo-contianer flex items-center justify-center flex-wrap max-w-[1130px] h-[38px] mx-auto gap-[60px]">
             <img src="assets/images/logos/TESLA.svg" alt="clients logo" />
             <img src="assets/images/logos/Libra 2.svg" alt="clients logo" />
@@ -154,125 +156,252 @@ export default function Browse() {
         </div>
         <div className="swiper w-full">
           <div className="swiper-wrapper">
-            <div className="swiper-slide !w-fit first-of-type:pl-[calc((100%-1130px-60px)/2)] last-of-type:pr-[calc((100%-1130px-60px)/2)]">
-              <a href="city-details.html" className="card">
-                <div className="relative flex shrink-0 w-[230px] h-[300px] rounded-[20px] overflow-hidden">
-                  <div className="relative flex flex-col justify-end w-full h-full p-5 gap-[2px] bg-[linear-gradient(180deg,_rgba(0,0,0,0)_49.87%,_rgba(0,0,0,0.8)_100%)] z-10">
-                    <h3 className="font-bold text-xl leading-[30px] text-white">
-                      Jakarta Pusat
-                    </h3>
-                    <p className="text-white">189 Offices</p>
+            <Swiper
+              direction="horizontal"
+              spaceBetween={30}
+              slidesPerView="auto"
+              slidesOffsetAfter={30}
+              slidesOffsetBefore={30}
+            >
+              <SwiperSlide className="!w-fit first-of-type:pl-[calc((100%-1130px-60px)/2)] last-of-type:pr-[calc((100%-1130px-60px)/2)]">
+                <a href="city-details.html" className="card">
+                  <div className="relative flex shrink-0 w-[230px] h-[300px] rounded-[20px] overflow-hidden">
+                    <div className="relative flex flex-col justify-end w-full h-full p-5 gap-[2px] bg-[linear-gradient(180deg,_rgba(0,0,0,0)_49.87%,_rgba(0,0,0,0.8)_100%)] z-10">
+                      <h3 className="font-bold text-xl leading-[30px] text-white">
+                        Jakarta Pusat
+                      </h3>
+                      <p className="text-white">189 Offices</p>
+                    </div>
+                    <img
+                      src="assets/images/thumbnails/thumbnails-2.png"
+                      className="absolute w-full h-full object-cover"
+                      alt="thumbnails"
+                    />
                   </div>
-                  <img
-                    src="assets/images/thumbnails/thumbnails-2.png"
-                    className="absolute w-full h-full object-cover"
-                    alt="thumbnails"
-                  />
-                </div>
-              </a>
-            </div>
-            <div className="swiper-slide !w-fit first-of-type:pl-[calc((100%-1130px-60px)/2)] last-of-type:pr-[calc((100%-1130px-60px)/2)]">
-              <a href="city-details.html" className="card">
-                <div className="relative flex shrink-0 w-[230px] h-[300px] rounded-[20px] overflow-hidden">
-                  <div className="relative flex flex-col justify-end w-full h-full p-5 gap-[2px] bg-[linear-gradient(180deg,_rgba(0,0,0,0)_49.87%,_rgba(0,0,0,0.8)_100%)] z-10">
-                    <h3 className="font-bold text-xl leading-[30px] text-white">
-                      Jakarta Pusat
-                    </h3>
-                    <p className="text-white">189 Offices</p>
+                </a>
+              </SwiperSlide>
+              <SwiperSlide className="!w-fit first-of-type:pl-[calc((100%-1130px-60px)/2)] last-of-type:pr-[calc((100%-1130px-60px)/2)]">
+                <a href="city-details.html" className="card">
+                  <div className="relative flex shrink-0 w-[230px] h-[300px] rounded-[20px] overflow-hidden">
+                    <div className="relative flex flex-col justify-end w-full h-full p-5 gap-[2px] bg-[linear-gradient(180deg,_rgba(0,0,0,0)_49.87%,_rgba(0,0,0,0.8)_100%)] z-10">
+                      <h3 className="font-bold text-xl leading-[30px] text-white">
+                        Jakarta Pusat
+                      </h3>
+                      <p className="text-white">189 Offices</p>
+                    </div>
+                    <img
+                      src="assets/images/thumbnails/thumbnails-1.png"
+                      className="absolute w-full h-full object-cover"
+                      alt="thumbnails"
+                    />
                   </div>
-                  <img
-                    src="assets/images/thumbnails/thumbnails-1.png"
-                    className="absolute w-full h-full object-cover"
-                    alt="thumbnails"
-                  />
-                </div>
-              </a>
-            </div>
-            <div className="swiper-slide !w-fit first-of-type:pl-[calc((100%-1130px-60px)/2)] last-of-type:pr-[calc((100%-1130px-60px)/2)]">
-              <a href="city-details.html" className="card">
-                <div className="relative flex shrink-0 w-[230px] h-[300px] rounded-[20px] overflow-hidden">
-                  <div className="relative flex flex-col justify-end w-full h-full p-5 gap-[2px] bg-[linear-gradient(180deg,_rgba(0,0,0,0)_49.87%,_rgba(0,0,0,0.8)_100%)] z-10">
-                    <h3 className="font-bold text-xl leading-[30px] text-white">
-                      Bandung Utara
-                    </h3>
-                    <p className="text-white">189 Offices</p>
+                </a>
+              </SwiperSlide>
+              <SwiperSlide className="!w-fit first-of-type:pl-[calc((100%-1130px-60px)/2)] last-of-type:pr-[calc((100%-1130px-60px)/2)]">
+                <a href="city-details.html" className="card">
+                  <div className="relative flex shrink-0 w-[230px] h-[300px] rounded-[20px] overflow-hidden">
+                    <div className="relative flex flex-col justify-end w-full h-full p-5 gap-[2px] bg-[linear-gradient(180deg,_rgba(0,0,0,0)_49.87%,_rgba(0,0,0,0.8)_100%)] z-10">
+                      <h3 className="font-bold text-xl leading-[30px] text-white">
+                        Bandung Utara
+                      </h3>
+                      <p className="text-white">189 Offices</p>
+                    </div>
+                    <img
+                      src="assets/images/thumbnails/thumbnails-3.png"
+                      className="absolute w-full h-full object-cover"
+                      alt="thumbnails"
+                    />
                   </div>
-                  <img
-                    src="assets/images/thumbnails/thumbnails-3.png"
-                    className="absolute w-full h-full object-cover"
-                    alt="thumbnails"
-                  />
-                </div>
-              </a>
-            </div>
-            <div className="swiper-slide !w-fit first-of-type:pl-[calc((100%-1130px-60px)/2)] last-of-type:pr-[calc((100%-1130px-60px)/2)]">
-              <a href="city-details.html" className="card">
-                <div className="relative flex shrink-0 w-[230px] h-[300px] rounded-[20px] overflow-hidden">
-                  <div className="relative flex flex-col justify-end w-full h-full p-5 gap-[2px] bg-[linear-gradient(180deg,_rgba(0,0,0,0)_49.87%,_rgba(0,0,0,0.8)_100%)] z-10">
-                    <h3 className="font-bold text-xl leading-[30px] text-white">
-                      Jakarta Pusat
-                    </h3>
-                    <p className="text-white">189 Offices</p>
+                </a>
+              </SwiperSlide>
+              <SwiperSlide className="!w-fit first-of-type:pl-[calc((100%-1130px-60px)/2)] last-of-type:pr-[calc((100%-1130px-60px)/2)]">
+                <a href="city-details.html" className="card">
+                  <div className="relative flex shrink-0 w-[230px] h-[300px] rounded-[20px] overflow-hidden">
+                    <div className="relative flex flex-col justify-end w-full h-full p-5 gap-[2px] bg-[linear-gradient(180deg,_rgba(0,0,0,0)_49.87%,_rgba(0,0,0,0.8)_100%)] z-10">
+                      <h3 className="font-bold text-xl leading-[30px] text-white">
+                        Jakarta Pusat
+                      </h3>
+                      <p className="text-white">189 Offices</p>
+                    </div>
+                    <img
+                      src="assets/images/thumbnails/thumbnails-4.png"
+                      className="absolute w-full h-full object-cover"
+                      alt="thumbnails"
+                    />
                   </div>
-                  <img
-                    src="assets/images/thumbnails/thumbnails-4.png"
-                    className="absolute w-full h-full object-cover"
-                    alt="thumbnails"
-                  />
-                </div>
-              </a>
-            </div>
-            <div className="swiper-slide !w-fit first-of-type:pl-[calc((100%-1130px-60px)/2)] last-of-type:pr-[calc((100%-1130px-60px)/2)]">
-              <a href="city-details.html" className="card">
-                <div className="relative flex shrink-0 w-[230px] h-[300px] rounded-[20px] overflow-hidden">
-                  <div className="relative flex flex-col justify-end w-full h-full p-5 gap-[2px] bg-[linear-gradient(180deg,_rgba(0,0,0,0)_49.87%,_rgba(0,0,0,0.8)_100%)] z-10">
-                    <h3 className="font-bold text-xl leading-[30px] text-white">
-                      Bandung Utara
-                    </h3>
-                    <p className="text-white">189 Offices</p>
+                </a>
+              </SwiperSlide>
+              <SwiperSlide className="!w-fit first-of-type:pl-[calc((100%-1130px-60px)/2)] last-of-type:pr-[calc((100%-1130px-60px)/2)]">
+                <a href="city-details.html" className="card">
+                  <div className="relative flex shrink-0 w-[230px] h-[300px] rounded-[20px] overflow-hidden">
+                    <div className="relative flex flex-col justify-end w-full h-full p-5 gap-[2px] bg-[linear-gradient(180deg,_rgba(0,0,0,0)_49.87%,_rgba(0,0,0,0.8)_100%)] z-10">
+                      <h3 className="font-bold text-xl leading-[30px] text-white">
+                        Bandung Utara
+                      </h3>
+                      <p className="text-white">189 Offices</p>
+                    </div>
+                    <img
+                      src="assets/images/thumbnails/thumbnails-5.png"
+                      className="absolute w-full h-full object-cover"
+                      alt="thumbnails"
+                    />
                   </div>
-                  <img
-                    src="assets/images/thumbnails/thumbnails-5.png"
-                    className="absolute w-full h-full object-cover"
-                    alt="thumbnails"
-                  />
-                </div>
-              </a>
-            </div>
-            <div className="swiper-slide !w-fit first-of-type:pl-[calc((100%-1130px-60px)/2)] last-of-type:pr-[calc((100%-1130px-60px)/2)]">
-              <a href="city-details.html" className="card">
-                <div className="relative flex shrink-0 w-[230px] h-[300px] rounded-[20px] overflow-hidden">
-                  <div className="relative flex flex-col justify-end w-full h-full p-5 gap-[2px] bg-[linear-gradient(180deg,_rgba(0,0,0,0)_49.87%,_rgba(0,0,0,0.8)_100%)] z-10">
-                    <h3 className="font-bold text-xl leading-[30px] text-white">
-                      Jakarta Pusat
-                    </h3>
-                    <p className="text-white">189 Offices</p>
+                </a>
+              </SwiperSlide>
+              <SwiperSlide className="!w-fit first-of-type:pl-[calc((100%-1130px-60px)/2)] last-of-type:pr-[calc((100%-1130px-60px)/2)]">
+                <a href="city-details.html" className="card">
+                  <div className="relative flex shrink-0 w-[230px] h-[300px] rounded-[20px] overflow-hidden">
+                    <div className="relative flex flex-col justify-end w-full h-full p-5 gap-[2px] bg-[linear-gradient(180deg,_rgba(0,0,0,0)_49.87%,_rgba(0,0,0,0.8)_100%)] z-10">
+                      <h3 className="font-bold text-xl leading-[30px] text-white">
+                        Jakarta Pusat
+                      </h3>
+                      <p className="text-white">189 Offices</p>
+                    </div>
+                    <img
+                      src="assets/images/thumbnails/thumbnails-6.png"
+                      className="absolute w-full h-full object-cover"
+                      alt="thumbnails"
+                    />
                   </div>
-                  <img
-                    src="assets/images/thumbnails/thumbnails-6.png"
-                    className="absolute w-full h-full object-cover"
-                    alt="thumbnails"
-                  />
-                </div>
-              </a>
-            </div>
-            <div className="swiper-slide !w-fit first-of-type:pl-[calc((100%-1130px-60px)/2)] last-of-type:pr-[calc((100%-1130px-60px)/2)]">
-              <a href="city-details.html" className="card">
-                <div className="relative flex shrink-0 w-[230px] h-[300px] rounded-[20px] overflow-hidden">
-                  <div className="relative flex flex-col justify-end w-full h-full p-5 gap-[2px] bg-[linear-gradient(180deg,_rgba(0,0,0,0)_49.87%,_rgba(0,0,0,0.8)_100%)] z-10">
-                    <h3 className="font-bold text-xl leading-[30px] text-white">
-                      Bandung Utara
-                    </h3>
-                    <p className="text-white">189 Offices</p>
+                </a>
+              </SwiperSlide>
+              <SwiperSlide className="!w-fit first-of-type:pl-[calc((100%-1130px-60px)/2)] last-of-type:pr-[calc((100%-1130px-60px)/2)]">
+                <a href="city-details.html" className="card">
+                  <div className="relative flex shrink-0 w-[230px] h-[300px] rounded-[20px] overflow-hidden">
+                    <div className="relative flex flex-col justify-end w-full h-full p-5 gap-[2px] bg-[linear-gradient(180deg,_rgba(0,0,0,0)_49.87%,_rgba(0,0,0,0.8)_100%)] z-10">
+                      <h3 className="font-bold text-xl leading-[30px] text-white">
+                        Bandung Utara
+                      </h3>
+                      <p className="text-white">189 Offices</p>
+                    </div>
+                    <img
+                      src="assets/images/thumbnails/thumbnails-7.png"
+                      className="absolute w-full h-full object-cover"
+                      alt="thumbnails"
+                    />
                   </div>
-                  <img
-                    src="assets/images/thumbnails/thumbnails-7.png"
-                    className="absolute w-full h-full object-cover"
-                    alt="thumbnails"
-                  />
-                </div>
-              </a>
-            </div>
+                </a>
+              </SwiperSlide>
+              <SwiperSlide className="!w-fit first-of-type:pl-[calc((100%-1130px-60px)/2)] last-of-type:pr-[calc((100%-1130px-60px)/2)]">
+                <a href="city-details.html" className="card">
+                  <div className="relative flex shrink-0 w-[230px] h-[300px] rounded-[20px] overflow-hidden">
+                    <div className="relative flex flex-col justify-end w-full h-full p-5 gap-[2px] bg-[linear-gradient(180deg,_rgba(0,0,0,0)_49.87%,_rgba(0,0,0,0.8)_100%)] z-10">
+                      <h3 className="font-bold text-xl leading-[30px] text-white">
+                        Jakarta Pusat
+                      </h3>
+                      <p className="text-white">189 Offices</p>
+                    </div>
+                    <img
+                      src="assets/images/thumbnails/thumbnails-2.png"
+                      className="absolute w-full h-full object-cover"
+                      alt="thumbnails"
+                    />
+                  </div>
+                </a>
+              </SwiperSlide>
+              <SwiperSlide className="!w-fit first-of-type:pl-[calc((100%-1130px-60px)/2)] last-of-type:pr-[calc((100%-1130px-60px)/2)]">
+                <a href="city-details.html" className="card">
+                  <div className="relative flex shrink-0 w-[230px] h-[300px] rounded-[20px] overflow-hidden">
+                    <div className="relative flex flex-col justify-end w-full h-full p-5 gap-[2px] bg-[linear-gradient(180deg,_rgba(0,0,0,0)_49.87%,_rgba(0,0,0,0.8)_100%)] z-10">
+                      <h3 className="font-bold text-xl leading-[30px] text-white">
+                        Jakarta Pusat
+                      </h3>
+                      <p className="text-white">189 Offices</p>
+                    </div>
+                    <img
+                      src="assets/images/thumbnails/thumbnails-1.png"
+                      className="absolute w-full h-full object-cover"
+                      alt="thumbnails"
+                    />
+                  </div>
+                </a>
+              </SwiperSlide>
+              <SwiperSlide className="!w-fit first-of-type:pl-[calc((100%-1130px-60px)/2)] last-of-type:pr-[calc((100%-1130px-60px)/2)]">
+                <a href="city-details.html" className="card">
+                  <div className="relative flex shrink-0 w-[230px] h-[300px] rounded-[20px] overflow-hidden">
+                    <div className="relative flex flex-col justify-end w-full h-full p-5 gap-[2px] bg-[linear-gradient(180deg,_rgba(0,0,0,0)_49.87%,_rgba(0,0,0,0.8)_100%)] z-10">
+                      <h3 className="font-bold text-xl leading-[30px] text-white">
+                        Bandung Utara
+                      </h3>
+                      <p className="text-white">189 Offices</p>
+                    </div>
+                    <img
+                      src="assets/images/thumbnails/thumbnails-3.png"
+                      className="absolute w-full h-full object-cover"
+                      alt="thumbnails"
+                    />
+                  </div>
+                </a>
+              </SwiperSlide>
+              <SwiperSlide className="!w-fit first-of-type:pl-[calc((100%-1130px-60px)/2)] last-of-type:pr-[calc((100%-1130px-60px)/2)]">
+                <a href="city-details.html" className="card">
+                  <div className="relative flex shrink-0 w-[230px] h-[300px] rounded-[20px] overflow-hidden">
+                    <div className="relative flex flex-col justify-end w-full h-full p-5 gap-[2px] bg-[linear-gradient(180deg,_rgba(0,0,0,0)_49.87%,_rgba(0,0,0,0.8)_100%)] z-10">
+                      <h3 className="font-bold text-xl leading-[30px] text-white">
+                        Jakarta Pusat
+                      </h3>
+                      <p className="text-white">189 Offices</p>
+                    </div>
+                    <img
+                      src="assets/images/thumbnails/thumbnails-4.png"
+                      className="absolute w-full h-full object-cover"
+                      alt="thumbnails"
+                    />
+                  </div>
+                </a>
+              </SwiperSlide>
+              <SwiperSlide className="!w-fit first-of-type:pl-[calc((100%-1130px-60px)/2)] last-of-type:pr-[calc((100%-1130px-60px)/2)]">
+                <a href="city-details.html" className="card">
+                  <div className="relative flex shrink-0 w-[230px] h-[300px] rounded-[20px] overflow-hidden">
+                    <div className="relative flex flex-col justify-end w-full h-full p-5 gap-[2px] bg-[linear-gradient(180deg,_rgba(0,0,0,0)_49.87%,_rgba(0,0,0,0.8)_100%)] z-10">
+                      <h3 className="font-bold text-xl leading-[30px] text-white">
+                        Bandung Utara
+                      </h3>
+                      <p className="text-white">189 Offices</p>
+                    </div>
+                    <img
+                      src="assets/images/thumbnails/thumbnails-5.png"
+                      className="absolute w-full h-full object-cover"
+                      alt="thumbnails"
+                    />
+                  </div>
+                </a>
+              </SwiperSlide>
+              <SwiperSlide className="!w-fit first-of-type:pl-[calc((100%-1130px-60px)/2)] last-of-type:pr-[calc((100%-1130px-60px)/2)]">
+                <a href="city-details.html" className="card">
+                  <div className="relative flex shrink-0 w-[230px] h-[300px] rounded-[20px] overflow-hidden">
+                    <div className="relative flex flex-col justify-end w-full h-full p-5 gap-[2px] bg-[linear-gradient(180deg,_rgba(0,0,0,0)_49.87%,_rgba(0,0,0,0.8)_100%)] z-10">
+                      <h3 className="font-bold text-xl leading-[30px] text-white">
+                        Jakarta Pusat
+                      </h3>
+                      <p className="text-white">189 Offices</p>
+                    </div>
+                    <img
+                      src="assets/images/thumbnails/thumbnails-6.png"
+                      className="absolute w-full h-full object-cover"
+                      alt="thumbnails"
+                    />
+                  </div>
+                </a>
+              </SwiperSlide>
+              <SwiperSlide className="!w-fit first-of-type:pl-[calc((100%-1130px-60px)/2)] last-of-type:pr-[calc((100%-1130px-60px)/2)]">
+                <a href="city-details.html" className="card">
+                  <div className="relative flex shrink-0 w-[230px] h-[300px] rounded-[20px] overflow-hidden">
+                    <div className="relative flex flex-col justify-end w-full h-full p-5 gap-[2px] bg-[linear-gradient(180deg,_rgba(0,0,0,0)_49.87%,_rgba(0,0,0,0.8)_100%)] z-10">
+                      <h3 className="font-bold text-xl leading-[30px] text-white">
+                        Bandung Utara
+                      </h3>
+                      <p className="text-white">189 Offices</p>
+                    </div>
+                    <img
+                      src="assets/images/thumbnails/thumbnails-7.png"
+                      className="absolute w-full h-full object-cover"
+                      alt="thumbnails"
+                    />
+                  </div>
+                </a>
+              </SwiperSlide>
+            </Swiper>
           </div>
         </div>
       </section>
@@ -816,5 +945,6 @@ export default function Browse() {
         </div>
       </section>
     </>
+
   )
 }
