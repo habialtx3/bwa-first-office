@@ -2,7 +2,7 @@ export interface Office {
     id: number,
     price: number,
     duration: number,
-    name: string,
+    name: string, 
     slug: string,
     thumbnail: string,
     city: City,

@@ -20,7 +20,7 @@ class OfficeSpaceResource extends JsonResource
             'slug' => $this->slug,
             'thumbnail' => $this->thumbnail,
             'about' => $this->about,
-            'duration' => $this->thumbnail, 
+            'duration' => $this->duration, 
             'price' => $this->price,
             'city' => new CityResource($this->whenLoaded('city')),
             'photo' => OfficeSpacePhotoResource::collection($this->whenLoaded('photos')),
