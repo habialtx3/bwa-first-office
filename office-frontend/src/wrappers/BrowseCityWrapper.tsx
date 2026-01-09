@@ -1,7 +1,33 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import CityCard from "../components/CityCard";
+import { useEffect, useState } from "react";
+import type { City } from "../types/type";
+import axios from "axios";
 
 export default function BrowseCityWrapper() {
+
+    const [cities, setCities] = useState<City[]>([])
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        axios.
+            get("http://127.0.0.1:8000/api/cities", {
+                headers: {
+                    "X-API-KEY": "rezarezi123"
+                }
+            })
+            .then((response) => {
+                setCities(response.data.data)
+            })
+            .catch((error) => {
+                setError(error)
+            })
+            .finally(() => {
+                setLoading(false)
+            })
+    }, [])
+
     return (
         <>
             <section id="Cities" className="flex flex-col gap-[30px] mt-[100px]">
@@ -26,18 +52,11 @@ export default function BrowseCityWrapper() {
                             slidesOffsetAfter={30}
                             slidesOffsetBefore={30}
                         >
-                            <SwiperSlide className="!w-fit first-of-type:pl-[calc((100%-1130px-60px)/2)] last-of-type:pr-[calc((100%-1130px-60px)/2)]">
-                                <CityCard />
-                            </SwiperSlide>
-                            <SwiperSlide className="!w-fit first-of-type:pl-[calc((100%-1130px-60px)/2)] last-of-type:pr-[calc((100%-1130px-60px)/2)]">
-                                <CityCard />
-                            </SwiperSlide>
-                            <SwiperSlide className="!w-fit first-of-type:pl-[calc((100%-1130px-60px)/2)] last-of-type:pr-[calc((100%-1130px-60px)/2)]">
-                                <CityCard />
-                            </SwiperSlide>
-                            <SwiperSlide className="!w-fit first-of-type:pl-[calc((100%-1130px-60px)/2)] last-of-type:pr-[calc((100%-1130px-60px)/2)]">
-                                <CityCard />
-                            </SwiperSlide>
+                            {cities.map((city) => (
+                                <SwiperSlide className="!w-fit first-of-type:pl-[calc((100%-1130px-60px)/2)] last-of-type:pr-[calc((100%-1130px-60px)/2)]">
+                                    <CityCard city={city}/>
+                                </SwiperSlide>
+                            ))}
                         </Swiper>
                     </div>
                 </div>
