@@ -1,44 +1,11 @@
 import BrowseCityWrapper from "../wrappers/BrowseCityWrapper"
 import BrowseOfficeWrapper from "../wrappers/BrowseOfficeWrapper"
+import Navbar from "../components/Navbar"
 
 export default function Browse() {
   return (
     <>
-      <nav className="bg-white">
-        <div className="flex items-center justify-between w-full max-w-[1130px] py-[22px] mx-auto">
-          <a href="index.html">
-            <img src="assets/images/logos/logo.svg" alt="logo" />
-          </a>
-          <ul className="flex items-center gap-[50px] w-fit">
-            <li>
-              <a href="">Browse</a>
-            </li>
-            <li>
-              <a href="">Popular</a>
-            </li>
-            <li>
-              <a href="">Categories</a>
-            </li>
-            <li>
-              <a href="">Events</a>
-            </li>
-            <li>
-              <a href="view-booking-details.html">My Booking</a>
-            </li>
-          </ul>
-          <a
-            href="#"
-            className="flex items-center gap-[10px] rounded-full border border-[#000929] py-3 px-5"
-          >
-            <img
-              src="assets/images/icons/call.svg"
-              className="w-6 h-6"
-              alt="icon"
-            />
-            <span className="font-semibold">Contact Us</span>
-          </a>
-        </div>
-      </nav>
+     <Navbar/>
       <header className="flex flex-col w-full">
         <section id="Hero-Banner" className="relative flex h-[720px] -mb-[93px]">
           <div
@@ -104,8 +71,8 @@ export default function Browse() {
             />
           </div>
         </section>
-        <div id="companies" className="flex flex-col z-10 pt-[150px] pb-10 px-[120px] gap-10 bg-[#0D903A]">
-          <div className="logo-contianer flex items-center justify-center flex-wrap max-w-[1130px] h-[38px] mx-auto gap-[60px]">
+        <div id="companies" className="flex flex-col z-10 py-10 pb-10 px-[120px] gap-10 bg-[#0D903A]">
+          <div className="logo-contianer flex items-center justify-center flex-wrap wrap- max-w-[1130px] h-auto mx-auto gap-[60px]">
             <img src="assets/images/logos/TESLA.svg" alt="clients logo" />
             <img src="assets/images/logos/Libra 2.svg" alt="clients logo" />
             <img src="assets/images/logos/Binance logo.svg" alt="clients logo" />
