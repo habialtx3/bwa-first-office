@@ -4,6 +4,7 @@ export interface Office {
     duration: number,
     name: string, 
     slug: string,
+    address: string,
     thumbnail: string,
     city: City,
     photos: Photo[],

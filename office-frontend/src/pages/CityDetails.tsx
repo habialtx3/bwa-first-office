@@ -36,7 +36,7 @@ export default function CityDetails() {
 
     return (
         <>
-            <Navbar />
+            <Navbar />  
             <header className="flex flex-col w-full">
                 <section id="Hero-Banner" className="relative flex h-[434px]">
                     <div

@@ -1,6 +1,11 @@
+import Navbar from "../components/Navbar";
+import OfficeDetail from "../components/OfficeDetail";
 
 export default function BookOffice() {
   return (
-    <p>Ini adalah halaman BookOffice</p>
+    <>
+    <Navbar/>
+    <OfficeDetail/>
+    </>
   )
 }
