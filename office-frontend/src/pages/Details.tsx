@@ -33,8 +33,6 @@ export default function Details() {
       })
   }, [slug])
 
-  console.log(office)
-
   return (
     <>
       <Navbar />
@@ -163,7 +161,7 @@ export default function Details() {
             </div>
             <hr className="border-[#F6F5FD]" />
             <div className="flex flex-col gap-[14px]">
-              <Link to="booking.html" className="flex items-center justify-center w-full rounded-full p-[16px_26px] gap-3 bg-[#0D903A] font-bold text-[#F7F7FD]">
+              <Link to={`book`} className="flex items-center justify-center w-full rounded-full p-[16px_26px] gap-3 bg-[#0D903A] font-bold text-[#F7F7FD]">
                 <img src="/assets/images/icons/slider-horizontal-white.svg" className="w-6 h-6" alt="icon" />
                 <span>Book This Office</span>
               </Link>
