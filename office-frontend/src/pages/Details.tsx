@@ -4,6 +4,7 @@ import type { Office } from "../types/type";
 import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react"
 import "swiper/css"
+import Navbar from "../components/Navbar";
 
 
 export default function Details() {
@@ -36,14 +37,22 @@ export default function Details() {
 
   return (
     <>
+      <Navbar />
       <section id="Gallery" className="-mb-[50px]">
         <Swiper
+          grabCursor
+          watchOverflow={false}
           className="w-full"
+          direction="horizontal"
+          spaceBetween={100}
           slidesPerView="auto"
+          slidesOffsetBefore={30}
+          slidesOffsetAfter={30}
         >
           {office?.photo?.map((photo) => (
-            <SwiperSlide key={photo.id} className="!w-fit">
-              <div className="w-[700px] h-[550px] overflow-hidden">
+            <SwiperSlide key={photo.id} className="!w-fit"
+            >
+              <div className="w-[1000px] h-[550px]">
                 <img
                   src={`${Base_Url}/${photo.photo}`}
                   className="w-full h-full object-cover"

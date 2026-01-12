@@ -7,8 +7,8 @@ export interface Office {
     address: string,
     thumbnail: string,
     city: City,
-    photos: Photo[],
-    benefits: Benefit[],
+    photo: Photo[],
+    benefit: Benefit[],
     about: string
 }
 
