@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\BookingTransactionController;
 use App\Http\Controllers\Api\CityController;
 use App\Http\Controllers\Api\OfficeSpaceController;
 use App\Http\Resources\Api\BookingTransactionResource;
@@ -17,6 +18,10 @@ Route::middleware('api_key')->group(function () {
 
     Route::get('/offices/{officeSpace:slug}', [OfficeSpaceController::class, 'show']);
     Route::apiResource('/offices', OfficeSpaceController::class);
+
+    Route::post('/booking-transation', [BookingTransactionController::class, 'store']);
+
+    Route::get('/check-transation', [BookingTransactionController::class, 'booking_details']);
 });
 
 
