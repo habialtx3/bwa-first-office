@@ -20,8 +20,8 @@ export default function BookOffice() {
     name: "",
     phone_number: "",
     started_at: "",
-    office_space_id: "",
-    totalAmountWithUniqueCode: 0,
+    office_space_id: 0,
+    total_amount: 0,
   })
 
   const [formErrors, setFormErrors] = useState<z.ZodIssue[]>([])
@@ -121,10 +121,10 @@ export default function BookOffice() {
       navigate('/success-booking', {
         state: {
           office,
-          booking : response.data
+          booking: response.data
         }
       })
-    } catch (error : unknown) {
+    } catch (error: unknown) {
 
     }
 
@@ -139,7 +139,9 @@ export default function BookOffice() {
         <div className="absolute w-full h-full bg-[linear-gradient(180deg,_rgba(0,0,0,0)_0%,#000000_91.83%)] z-10"></div>
         <img src={`${Base_Url}/${office?.thumbnail}`} className="absolute w-full h-full object-cover object-top" alt="" />
       </div>
-      <form action="booking-finished.html" className="relative flex justify-center max-w-[1130px] mx-auto gap-[30px] mb-20 z-20">
+      <form
+        onSubmit={handleSubmit}
+        className="relative flex justify-center max-w-[1130px] mx-auto gap-[30px] mb-20 z-20">
         <div className="flex flex-col shrink-0 w-[500px] h-fit rounded-[20px] border border-[#E0DEF7] p-[30px] gap-[30px] bg-white">
           <div className="flex items-center gap-4">
             <div className="flex shrink-0 w-[140px] h-[100px] rounded-[20px] overflow-hidden">
@@ -167,10 +169,10 @@ export default function BookOffice() {
               </div>
             </div>
             <div className="flex flex-col gap-2">
-              <label htmlFor="phone" className="font-semibold">Phone Number</label>
+              <label htmlFor="phone_number" className="font-semibold">Phone Number</label>
               <div className="flex items-center rounded-full border border-[#000929] px-5 gap-[10px] transition-all duration-300 focus-within:ring-2 focus-within:ring-[#0D903A]">
                 <img src="/assets/images/icons/call-black.svg" className="w-6 h-6" alt="icon" />
-                <input type="text" onChange={handleChange} value={formData.phone_number} name="phone" id="phone" className="appearance-none outline-none w-full py-3 font-semibold placeholder:font-normal placeholder:text-[#000929]" placeholder="Write your valid number" />
+                <input type="text" onChange={handleChange} value={formData.phone_number} name="phone_number" id="phone" className="appearance-none outline-none w-full py-3 font-semibold placeholder:font-normal placeholder:text-[#000929]" placeholder="Write your valid number" />
                 {formErrors.find((error) => error.path.includes("phone_number")) && (
                   <p className="text-red-500">Phone is required</p>
                 )}
@@ -178,10 +180,10 @@ export default function BookOffice() {
               </div>
             </div>
             <div className="flex flex-col gap-2">
-              <label htmlFor="date" className="font-semibold">Started At</label>
+              <label htmlFor="started_at" className="font-semibold">Started At</label>
               <div className="flex items-center rounded-full border border-[#000929] px-5 gap-[10px] transition-all duration-300 focus-within:ring-2 focus-within:ring-[#0D903A] overflow-hidden">
                 <img src="/assets/images/icons/calendar-black.svg" className="w-6 h-6" alt="icon" />
-                <input type="date" onChange={handleChange} value={formData.started_at} name="date" id="date" className="relative appearance-none outline-none w-full py-3 font-semibold [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:w-full [&::-webkit-calendar-picker-indicator]:h-full [&::-webkit-calendar-picker-indicator]:opacity-0" />
+                <input type="date" onChange={handleChange} value={formData.started_at} name="started_at" id="started_at" className="relative appearance-none outline-none w-full py-3 font-semibold [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:w-full [&::-webkit-calendar-picker-indicator]:h-full [&::-webkit-calendar-picker-indicator]:opacity-0" />
                 {formErrors.find((error) => error.path.includes("started_at")) && (
                   <p className="text-red-500">Date is required</p>
                 )}
