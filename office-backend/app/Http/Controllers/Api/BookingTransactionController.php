@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBookingTransactionRequest;
+use App\Http\Resources\Api\BookingTransactionResource;
 use App\Models\BookingTransaction;
 use App\Models\OfficeSpace;
 use Illuminate\Http\Request;
@@ -22,9 +23,10 @@ class BookingTransactionController extends Controller
 
         $validatedData['ended_at'] = (new \DateTime($validatedData['started_at']))
         ->modify("+{$officeSpace->duration} days")->format('Y-m-d');
-        
         $bookingTransaction = BookingTransaction::create($validatedData);
-
+        
+        $bookingTransaction->load('officeSpace');
+        return new BookingTransactionResource($bookingTransaction);
         //mengirim notif ke whatsapp
     }
 
