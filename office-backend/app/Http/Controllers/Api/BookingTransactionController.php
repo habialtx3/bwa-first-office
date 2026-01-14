@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\BookingDetailsRequest;
 use App\Http\Requests\StoreBookingTransactionRequest;
 use App\Http\Resources\Api\BookingTransactionResource;
 use App\Models\BookingTransaction;
@@ -12,7 +13,8 @@ use Illuminate\Http\Request;
 class BookingTransactionController extends Controller
 {
     //
-    public function store(StoreBookingTransactionRequest $request){
+    public function store(StoreBookingTransactionRequest $request)
+    {
         $validatedData = $request->validated();
 
         $officeSpace = OfficeSpace::find($validatedData['office_space_id']);
@@ -22,15 +24,29 @@ class BookingTransactionController extends Controller
         $validatedData['duration'] = $officeSpace->duration;
 
         $validatedData['ended_at'] = (new \DateTime($validatedData['started_at']))
-        ->modify("+{$officeSpace->duration} days")->format('Y-m-d');
+            ->modify("+{$officeSpace->duration} days")->format('Y-m-d');
         $bookingTransaction = BookingTransaction::create($validatedData);
-        
+
         $bookingTransaction->load('officeSpace');
         return new BookingTransactionResource($bookingTransaction);
         //mengirim notif ke whatsapp
     }
 
-    public function booking_details(){
+    public function booking_details(BookingDetailsRequest $request)
+    {
+        $validatedData = $request->validated();
 
+        $bookingDetails = BookingTransaction::where('booking_trx_id', $validatedData['booking_trx_id'])
+            ->where('phone_number', $validatedData['phone_number'])->first();
+
+        if (!$bookingDetails) {
+            return response()->json(
+                [
+                    'message' => 'Booking not found'
+                ],
+                404
+            );
+        }
+        return new BookingTransactionResource($bookingDetails);
     }
 }

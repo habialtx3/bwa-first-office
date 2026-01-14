@@ -9,5 +9,5 @@ export const bookingSchema = z.object({
 
 export const viewBookingSchema = z.object({
     booking_trx_id : z.string().min(1, "Booking Transaction Id is Required"),
-    phone_number : z.number().min(1,"Number is Required")
+    phone_number : z.string().min(1,"Number is Required")
 })
