@@ -10,6 +10,7 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\IconColumn;
@@ -17,6 +18,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Twilio\Rest\Client;
 
 class BookingTransactionResource extends Resource
 {
@@ -84,12 +86,14 @@ class BookingTransactionResource extends Resource
                 TextColumn::make('officeSpace.name')
                     ->searchable(),
 
-                TextColumn::make('booking_trx_id'),
+                TextColumn::make('booking_trx_id')
+                    ->searchable(),
+                
 
                 TextColumn::make('phone_number'),
 
                 TextColumn::make('started_at')
-                ->date(),
+                    ->date(),
 
                 TextColumn::make('total_amount'),
 
@@ -108,7 +112,41 @@ class BookingTransactionResource extends Resource
                 //
             ])
             ->actions([
+                Tables\Actions\Action::make('approve')
+                    ->label('Approve')
+                    ->action(function (BookingTransaction $record) {
+                        $record->is_paid = true;
+                        $record->save();
+
+
+                        Notification::make()
+                            ->title('Booking Approved')
+                            ->success()
+                            ->body('The booking successfully approved')
+                            ->send();
+
+                        $sid = getenv("TWILIO_ACCOUNT_ID");
+                        $token = getenv("TWILIO_AUTH_TOKEN");
+
+                        $twilio = new Client($sid, $token);
+
+                        $messageBody = "Hi, {$record->name}, Terima kasih telah mem-booking kantor di First Office.\n\n";
+                        $messageBody .= "Pesanan kantor {$record->officeSpace->name} dengan Booking TRX ID: {$record->booking_trx_id}.\n\n";
+                        $messageBody .= "Sudah di bayar, selamat menikmati !";
+
+
+                        $message = $twilio->messages
+                            ->create(
+                                "whatsapp:+$record->phone_number", // to
+                                array(
+                                    "from" => "whatsapp:+14155238886",
+                                    "body" => $messageBody
+                                )
+                            );
+                    })
+                    ->requiresConfirmation(),
                 Tables\Actions\EditAction::make(),
+
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

@@ -1,10 +1,10 @@
-import axios from "axios";
 import Navbar from "../components/Navbar";
 import React, { useEffect, useState } from "react";
 import type { Office } from "../types/type";
 import { useNavigate, useParams } from "react-router-dom";
 import { z } from "zod";
 import { bookingSchema } from "../types/validationBooking";
+import apiClient, { isAxiosError } from "../services/apiServices";
 
 export default function BookOffice() {
 
@@ -33,11 +33,7 @@ export default function BookOffice() {
 
   useEffect(() => {
     console.log('Fetching office data ....')
-    axios.get(`http://127.0.0.1:8000/api/offices/${slug}`, {
-      headers: {
-        "X-API-KEY": "rezarezi123"
-      }
-    })
+    apiClient.get(`http://127.0.0.1:8000/api/offices/${slug}`)
       .then((response) => {
         console.log('Office Data Fetched Successfully')
         setOffice(response.data.data)
@@ -56,7 +52,7 @@ export default function BookOffice() {
         }))
       })
       .catch((error: unknown) => {
-        if (axios.isAxiosError(error)) {
+        if (isAxiosError(error)) {
           console.error("Errror fetching office data", error.message)
           setError(error.message)
         } else {
@@ -105,15 +101,10 @@ export default function BookOffice() {
     setIsLoading(true)
 
     try {
-      const response = await axios.post(
+      const response = await apiClient.post(
         "http://127.0.0.1:8000/api/booking-transaction",
         {
           ...formData,
-        },
-        {
-          headers: {
-            "X-API-KEY": "rezarezi123"
-          }
         },
       );
 
@@ -279,7 +270,7 @@ export default function BookOffice() {
           </div>
           <hr className="border-[#F6F5FD]" />
           <button type="submit" disabled={isLoading} className="flex items-center justify-center w-full rounded-full p-[16px_26px] gap-3 bg-[#0D903A] font-bold text-[#F7F7FD]">
-            <span>{isLoading ? 'Loading ...' : "I've Already Paid"}</span>
+            <span>{isLoading ? 'Loading ...' : "Book The Office"}</span>
           </button>
         </div>
       </form>

@@ -2,9 +2,9 @@ import { useParams } from "react-router-dom";
 import BrowseOfficeWrapper from "../wrappers/BrowseOfficeWrapper";
 import { useEffect, useState } from "react";
 import type { City } from "../types/type";
-import axios from "axios";
 import OfficeCard from "../components/OfficeCard";
 import Navbar from "../components/Navbar";
+import apiClient from "../services/apiServices";
 
 export default function CityDetails() {
 
@@ -17,11 +17,7 @@ export default function CityDetails() {
 
 
     useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/api/city/${slug}`, {
-            headers: {
-                "X-API-KEY": "rezarezi123"
-            },
-        })
+        apiClient.get(`/city/${slug}`)
             .then((response) => {
                 setCity(response.data.data)
             })

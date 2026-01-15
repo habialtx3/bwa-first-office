@@ -1,7 +1,7 @@
-import axios from "axios";
 import OfficeCard from "../components/OfficeCard";
 import { useEffect, useState } from "react";
 import type { Office } from "../types/type";
+import apiClient from "../services/apiServices";
 
 export default function BrowseOfficeWrapper() {
 
@@ -11,8 +11,8 @@ export default function BrowseOfficeWrapper() {
 
 
     useEffect(() => {
-        axios
-            .get("http://127.0.0.1:8000/api/offices", {
+        apiClient
+            .get("/offices", {
                 headers: {
                     "X-API-KEY": "rezarezi123"
                 }

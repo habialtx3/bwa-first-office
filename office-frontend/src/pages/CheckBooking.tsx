@@ -3,8 +3,8 @@ import Navbar from "../components/Navbar";
 import React, { useEffect, useState } from "react";
 import type z from "zod";
 import { viewBookingSchema } from "../types/validationBooking";
-import axios from "axios";
 import type { BoookingDetails } from "../types/type";
+import apiClient, { isAxiosError } from "../services/apiServices";
 
 export default function CheckBooking() {
 
@@ -51,23 +51,18 @@ export default function CheckBooking() {
     setIsLoading(true)
 
     try {
-      const response = await axios.post(
-        "http://127.0.0.1:8000/api/check-transaction",
+      const response = await apiClient.post(
+        "/check-transaction",
         {
           ...formData,
         },
-        {
-          headers: {
-            "X-API-KEY": "rezarezi123"
-          }
-        }
       )
 
       console.log('Checking booking', response.data.data);
       setBookingDetails(response.data.data)
     } catch (error: unknown) {
 
-      if (axios.isAxiosError(error)) {
+      if (isAxiosError(error)) {
         console.log("Error submitting form : ", error.message);
         setError(error.message)
       } else {
@@ -120,13 +115,13 @@ export default function CheckBooking() {
             <div className="flex flex-col h-fit shrink-0 rounded-[20px] border border-[#E0DEF7] p-[30px] gap-[30px] bg-white">
               <div className="flex items-center gap-4">
                 <div className="flex shrink-0 w-[140px] h-[100px] rounded-[20px] overflow-hidden">
-                  <img src="/assets/images/thumbnails/thumbnail-details-4.png" className="w-full h-full object-cover" alt="thumbnail" />
+                  <img src={`${Base_Url}/${bookingDetails.office_space_id.thumbnail}`} className="w-full h-full object-cover" alt="thumbnail" />
                 </div>
                 <div className="flex flex-col gap-2">
                   <p className="font-bold text-xl leading-[30px]">{bookingDetails.name}</p>
                   <div className="flex items-center gap-[6px]">
                     <img src="/assets/images/icons/location.svg" className="w-6 h-6" alt="icon" />
-                    <p className="font-semibold">Jakarta Pusat</p>
+                    <p className="font-semibold">Jakara</p>
                   </div>
                 </div>
               </div>
@@ -173,15 +168,15 @@ export default function CheckBooking() {
               <div className="flex flex-col gap-5">
                 <div className="flex items-center justify-between">
                   <p className="font-semibold">Status Pembayaran</p>
-                  {bookingDetails.is_paid === 0 ? 
-                  (<p className="rounded-full w-fit p-[6px_16px] bg-[#FF852D] font-bold text-sm leading-[21px] text-[#F7F7FD]">
-                    PENDING
-                  </p>)
-                  : 
-                  (<p className="rounded-full w-fit p-[6px_16px] bg-[#0D903A] font-bold text-sm leading-[21px] text-[#F7F7FD]">
-                    PAID
-                  </p>)}
-                  
+                  {bookingDetails.is_paid === 0 ?
+                    (<p className="rounded-full w-fit p-[6px_16px] bg-[#FF852D] font-bold text-sm leading-[21px] text-[#F7F7FD]">
+                      PENDING
+                    </p>)
+                    :
+                    (<p className="rounded-full w-fit p-[6px_16px] bg-[#0D903A] font-bold text-sm leading-[21px] text-[#F7F7FD]">
+                      PAID
+                    </p>)}
+
                 </div>
                 <div className="flex items-center justify-between">
                   <p className="font-semibold">Booking TRX ID</p>

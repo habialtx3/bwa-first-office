@@ -39,18 +39,18 @@ class BookingTransactionController extends Controller
         $messageBody .= "Pesanan kantor {$bookingTransaction->officeSpace->name} dengan Booking TRX ID: {$bookingTransaction->booking_trx_id}.\n\n";
         $messageBody .= "Kami akan menginformasikan kembali status pemesanan anda secepat mungkin";
 
+        //mengirim notif ke whatsapp
 
         $message = $twilio->messages
             ->create(
-                "+$bookingTransaction->phone_number", // to
+                "whatsapp:+{$bookingTransaction->phone_number}", // to
                 array(
-                    "from" => getenv("TWILIO_PHONE_NUMBER"),
+                    "from" => "whatsapp:+14155238886",
                     "body" => $messageBody
                 )
             );
 
         return new BookingTransactionResource($bookingTransaction);
-        //mengirim notif ke whatsapp
     }
 
     public function booking_details(BookingDetailsRequest $request)

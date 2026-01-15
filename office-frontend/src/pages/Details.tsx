@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import type { Office } from "../types/type";
-import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react"
-import "swiper/css"
 import Navbar from "../components/Navbar";
+import apiClient from "../services/apiServices";
 
 
 export default function Details() {
@@ -17,11 +16,7 @@ export default function Details() {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    axios.get(`http://127.0.0.1:8000/api/offices/${slug}`, {
-      headers: {
-        "X-API-KEY": "rezarezi123"
-      }
-    })
+    apiClient.get(`/offices/${slug}`)
       .then((response) => {
         setOffice(response.data.data)
       })
